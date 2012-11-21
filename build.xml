@@ -88,25 +88,7 @@
     </exec>
   </target>
 
-  <target name="dist-deploy">
-    <copy file="default_integrator_key.template" tofile="default_integrator_key.js" overwrite="true">
-      <filterset>
-        <filtersfile file="deploy.properties" />
-      </filterset>
-    </copy>
-    <zip destfile="${basedir}/build/package.zip"
-         basedir="${basedir}"
-         excludes="build/**, node_modules/**, **/*.swp, **/*.db, .gitignore, .git/**, public/images/logo.png, **/*.template, **/*.properties"
-    />
-  </target>
-  <target name="build-deploy" depends="database,dist-deploy" />
-
   <target name="dist">
-    <copy file="default_integrator_key.template" tofile="default_integrator_key.js" overwrite="true">
-      <filterset>
-        <filter token="INTEGRATOR_KEY" value="" />
-      </filterset>
-    </copy>
     <zip destfile="${basedir}/build/package.zip"
          basedir="${basedir}"
          excludes="build/**, node_modules/**, **/*.swp, **/*.db, .gitignore, .git/**, public/images/logo.png, **/*.template, **/*.properties"
