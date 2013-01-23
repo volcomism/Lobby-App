@@ -1,20 +1,286 @@
-Copyright (c) 2012 DocuSign, Inc.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
-of the Software, and to permit persons to whom the Software is furnished to do
-so, subject to the following conditions:
+		       DOCUSIGN LOBBY SIGN-IN MANAGEMENT
+			     SDK LICENSE AGREEMENT
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+This DocuSign Lobby Sign-In Management Application SDK License Agreement (the
+"Agreement") is made by and between you (“Partner”) and DocuSign, Inc., a
+Washington corporation (“DocuSign”), regarding Partner's use of the DocuSign
+Sign In Management Application Software Development Kit and any associated
+documentation or software code related to it made available by DocuSign
+(collectively referred to in this Agreement as the “SDK”).  
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+The SDK includes documentation for one or more DocuSign application programming
+interfaces (collectively the “APIs”), which may be further defined in the SDK,
+object code  software code that utilizes the API and is made available “as is”
+as an installable, “out of the box” application (the “Application”), and an
+“open source” source code version of the Application (“Source Code”) that
+enables Partner to customize the Application to its needs.  The Application and
+Source Code will collectively be referred to as the “Software”.  The SDK is
+made available by DocuSign to allow you to make use of DocuSign’s on-demand
+electronic signature service (the “Subscription Service”) in connection with
+obtaining signatures from visitors and guests to your physical premises (“Lobby
+Sign-in”).  By installing, accessing or otherwise using the SDK, Partner
+accepts the terms of this Agreement.  If Partner does not agree to the terms of
+this Agreement, Partner may not install, access or use the SDK or any part
+thereof.
+
+This Agreement shall also apply to any updates, supplements or future versions
+of the SDK and, where applicable, any support services for the SDK.
+
+The parties agree as follows:   
+
+1.	USE OF THE SDK.  Subject to Partner's compliance with this Agreement,
+DocuSign grants Partner a license to (a) use the Application “as is” for
+internal purposes only in connection with the Lobby Sign-in process; (b) use
+the Source Code and APIs solely for the purpose of creating a customized
+version of the Application (the “Authorized Applications”).  Partner may make a
+reasonable number of copies of the SDK for this purpose, provided that it may
+reproduce only complete copies, including without limitation all “read me”
+files, copyright notices, and other legal notices and terms that DocuSign has
+included in the SDK.  Partner shall refrain from distributing any copy it makes
+of the SDK.  Partner shall not use the SDK to develop any applications or
+software code other than the Authorized Applications.
+
+2.   	AUTHORIZED APPLICATIONS.  
+
+  (a)	Any Authorized Applications created by Partner may: (a) include
+functionality that enables Partner to access and use features available through
+the Subscription Service that are relevant to the Lobby Sign-in process; (b)
+not include any independent features or functionality that are substantially
+similar to or compete with the functionality available through the Subscription
+Service; and (c) not provide access to or promote any services that are
+substantially similar to or compete with the Subscription Service.  Partner
+shall indemnify, hold harmless, and defend DocuSign from and against any
+third-party claims or lawsuits, including reasonable attorney’s fees, that
+arise or result from its use of the SDK, or the use, marketing, distribution
+and licensing of any of Partner's applications or software code.  
+
+  (b)	Any Authorized Applications developed by Partner must be tested by
+DocuSign and pass DocuSign's certification process before they may operate in
+DocuSign's production environment.  In developing Authorized Applications,
+Partner shall follow with the "DocuSign Information Guide - API Best Practices
+Information" documentation available at
+https://www.docusign.com/developer-center.
+
+  (c)	Partner may not license the Authorized Applications to any third party.  
+
+  (d)	Partner shall not use DocuSign’s trademarks in Partner's applications'
+names or in a way that suggests any applications developed by Partner come from
+or are endorsed by DocuSign. 
+
+3.  	DISTRIBUTABLE CODE.   If the SDK contains Distributable Code (as
+defined below), Partner shall be permitted to include such code in Authorized
+Applications under the following terms:
+
+  (a)	Right to Use and Distribute. Partner may copy and use the object code
+form of code listed in REDIST.TXT files, if any, in its Authorized
+Applications.  Partner may also modify, copy, and use the Source Code in its
+Authorized Applications.  The code referred to in the two preceding sentences
+is referred to collectively as “Distributable Code.”  In the event that
+DocuSign makes available to Partner certain revisions to correct errors in the
+Distributable Code, Partner shall incorporate these revisions in the Authorized
+Applications that use the Distributable Code as soon as commercially possible.
+
+  (b)	Distribution Restrictions.  Partner shall use the Distributable Code
+only as part of developing Authorized Applications.  Partner shall not alter
+any copyright, trademark or patent notice in the Distributable Code; include
+Distributable Code in malicious, deceptive or unlawful applications; or modify
+or distribute the source code of any Distributable Code so that any part of it
+becomes subject to an Excluded License.  An "Excluded License" is a license
+agreement that requires, as a condition of use, modification or distribution,
+that the code be disclosed or distributed in source code form; or others have
+the right to modify it.
+
+4.	USE OF THE SERVICES.  This Agreement to use the SDK does not grant any
+rights to use DocuSign’s Subscription Service.  Partner's use of the
+Subscription Service, and the use of the Subscription Service by anyone hosting
+or using Partner's Authorized Application(s), shall be governed by a separate
+agreement; generally the DocuSign Corporate Subscriber Terms & Conditions and
+DocuSign, or its equivalent.  If no such agreement exists between Partner and
+DocuSign, and for some reason Partner does access the Subscription Service,
+Partner's use of the Subscription Service shall be governed by then-current
+DocuSign Terms of Use available at http://www.docusign.com/company/terms-of-use
+until another such agreement is executed by the parties.
+
+5.	SUPPORT. DocuSign is not obligated to provide any technical or other
+support (“Support Services”) for the SDK or Subscription Service to Partner.
+If DocuSign does make available any Support Services to Partner, Partner's use
+of such Support Services will be governed by then-current DocuSign policies
+and, if applicable, fees for such services.  
+
+6.	SDK FEES.  The SDK is currently made available at no charge to DocuSign
+partners to assist them in their development efforts.  DocuSign may, in its
+sole discretion, choose in the future to charge for use of the SDK or the APIs.
+If DocuSign chooses to establish fees and payment terms for such use, DocuSign
+will provide notice of such terms as provided in Section 14 below, and Partner
+may elect to stop using the SDK or the APIs prior to the effective date of such
+fees.
+
+7.  	OWNERSHIP.   Partner agrees that DocuSign shall have sole and exclusive
+ownership of all right, title and interest in and to the SDK, along with any
+associated intellectual property rights (including but not limited to rights to
+all copyrights, trade secrets, or patents).  Partner shall have only the rights
+specifically granted by DocuSign in this Agreement.  No additional rights are
+granted or may be inferred.  Partner acknowledges and agrees that it does not
+have any right to: (a) make any modifications to any portion of the Software
+except as provided in the Software documentation; (b) attempt to reverse
+engineer, reverse translate, decompile or decode any portion of the SDK; (c)
+remove any patent, trademark, or copyright notices which DocuSign places on the
+Software; (d) publish the SDK for others to copy; (e) rent, lease or lend the
+SDK; or (f) take any other actions inconsistent with the limited rights granted
+by this Agreement.
+
+8.     	WARRANTY DISCLAIMER.  THE SDK, INCLUDING ANY DISTRIBUTABLE CODE, IS
+PROVIDED "AS IS."  DOCUSIGN MAKES NO REPRESENTATION OR WARRANTY OF ANY KIND --
+WHETHER EXPRESS, IMPLIED IN FACT OR BY OPERATION OF LAW, OR STATUTORY -- AS TO
+ANY MATTER WHATSOEVER.  DOCUSIGN EXPRESSLY DISCLAIMS ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  DOCUSIGN DOES NOT
+WARRANT THAT THE DOCUSIGN PRODUCTS OR SERVICES (INCLUDING THE SDK,
+DISTRIBUTABLE CODE, SUBSCRIPTION SERVICE OR SUPPORT SERVICES AND RELATED
+DELIVERABLES, IF ANY), ARE OR WILL BE ERROR-FREE, WILL MEET PARTNER’S
+REQUIREMENTS, OR BE TIMELY OR SECURE.  PARTNER SHALL NOT HAVE THE RIGHT TO MAKE
+OR PASS ON ANY REPRESENTATION OR WARRANTY ON BEHALF OF DOCUSIGN TO ANY THIRD
+PARTY.
+
+9.     	DISCLAIMER OF CONSEQUENTIAL DAMAGES.  EXCEPT WITH REGARD TO ANY
+INDEMNIFICATION OBLIGATIONS, NOTWITHSTANDING ANYTHING TO THE CONTRARY CONTAINED
+IN THIS AGREEMENT, NEITHER PARTY WILL, UNDER ANY CIRCUMSTANCES, BE LIABLE TO
+THE OTHER PARTY FOR CONSEQUENTIAL, INCIDENTAL, SPECIAL, OR EXEMPLARY DAMAGES
+ARISING OUT OF OR RELATED TO THE TRANSACTIONS CONTEMPLATED UNDER THIS
+AGREEMENT, INCLUDING, BUT NOT LIMITED TO, LOST PROFITS OR LOSS OF BUSINESS,
+EVEN IF APPRISED OF THE LIKELIHOOD OF SUCH DAMAGES OCCURRING.
+
+10.	CAP ON LIABILITY.  UNDER NO CIRCUMSTANCES WILL DOCUSIGN'S TOTAL
+LIABILITY OF ALL KINDS ARISING OUT OF OR RELATED TO THIS AGREEMENT (INCLUDING,
+BUT NOT LIMITED TO, WARRANTY CLAIMS AND WITH RESPECT TO CONSULTING SERVICES, IF
+ANY), REGARDLESS OF THE FORUM AND REGARDLESS OF WHETHER ANY ACTION OR CLAIM IS
+BASED ON CONTRACT, TORT, OR OTHERWISE, EXCEED THE TOTAL AMOUNT PAID BY PARTNER
+TO DOCUSIGN UNDER THIS AGREEMENT DURING THE 12 MONTHS PRECEDING THE DATE OF THE
+ACTION OR CLAIM.
+
+11.	TERMINATION.   DocuSign reserves the right to discontinue offering the
+SDK, APIs, Source Code, and Subscription Service or to modify the SDK, APIs,
+Source Code or Subscription Service at any time in its sole discretion.
+Notwithstanding anything contained in the Agreement to the contrary, DocuSign
+may also, in its sole discretion, terminate or suspend access to the APIs and
+Subscription Service to Partner or any end user at any time.  DocuSign agrees
+to provide Partner with notice of any such suspension or disablement of
+Partner's before its implementation unless such suspension or disablement is
+necessary to comply with legal process or prevent imminent harm to DocuSign’s
+System, the Subscription Service or any third party, in which case DocuSign
+will provide notification of such suspension or disablement as soon as
+reasonably practicable thereafter.  If this Agreement expires or is terminated
+for any reason: (a) Partner will pay to DocuSign any amounts required to be
+paid under this Agreement (if any); (b) Partner will destroy all copies of the
+SDK and any other DocuSign software, documentation, and materials within five
+business days of such termination, and immediately thereafter, if requested by
+DocuSign, provide DocuSign with a written certification signed by an authorized
+Partner representative certifying that all copies of software, documentation,
+and materials have been destroyed; (d) licenses to use DocuSign software and
+the provision of DocuSign services will immediately end; and (e) the parties’
+rights and obligations under Sections 7, 8, 9, 10, 11, 12, and 13 will survive.
+
+12.	CONFIDENTIALITY.  
+
+  (a)	“Confidential Information” means any information disclosed by DocuSign
+to Partner, directly or indirectly, in writing, orally, or by inspection of
+tangible objects (including documents, prototypes, and software source and
+object code), which is designated as “Confidential,” “Proprietary,” or some
+similar designation, or would be understood to be confidential by a reasonable
+person under the circumstances.  Partner's confidentiality obligations with
+regard to the SDK, the Subscription Services, and any DocuSign technical
+assistance shall be governed by a separate nondisclosure agreement between the
+parties.  
+
+  (b)	Restrictions. Partner shall use Confidential Information only for the
+purpose of exercising its rights and fulfilling its obligations hereunder, and
+shall not disclose any such Confidential Information to any third party without
+DocuSign’s express written consent.  Partner shall disclose Confidential
+Information only to those employees of Partner who have a need to know such
+information for the purposes of this Agreement and only if such employees are
+bound in writing by confidentiality obligations no less restrictive than those
+set forth in this Agreement.  Partner shall use the same degree of care and
+discretion, but in any event no less than a reasonable degree of care and
+discretion, to avoid unauthorized use or disclosure of Confidential Information
+as Partner uses to protect its own information of a similar nature.
+
+  (c)	Exceptions. Notwithstanding Section 12.(b) above, the confidentiality
+and non-use obligations set forth in this Agreement shall not apply with
+respect to any information that: (a) Partner rightfully possesses at the time
+of disclosure by DocuSign without duty of confidentiality; (b) Partner receives
+from a third party authorized to disclose such information without requirements
+of confidentiality; (c) Partner develops independently of and without reference
+to Confidential Information as shown by documents and other competent evidence
+in Partner’s possession; or (d) is or becomes generally available to the public
+through no fault of Partner.  In addition, Partner may disclose Confidential
+Information to the extent that Partner is required by any applicable
+governmental authority to do so; provided, however, that Partner gives DocuSign
+prompt written notice of such requirement and reasonably cooperates with
+DocuSign at DocuSign’s request and expense in attempting to contest or limit
+such required disclosure.
+
+  (d)	Equitable Relief. Partner acknowledges and agrees that due to the
+unique nature of Confidential Information, there can be no adequate remedy at
+law for any breach of Partner’s confidentiality obligations under this
+Agreement, that any such breach may result in irreparable harm to DocuSign, and
+that therefore, upon any such breach or threat thereof, DocuSign shall be
+entitled to appropriate equitable relief, including without limitation
+injunctive relief, in addition to any remedies it may have available at law.
+
+13.  	MISCELLANEOUS
+
+  (a)	Nontransferability.  Partner shall may not rent, lease or lend any of
+its rights in the SDK or access to the Subscription Service.  Partner may not
+assign its rights, duties, or obligations under this Agreement without
+DocuSign’s prior written consent.  If consent is given, this Agreement will
+bind Partner's successors and assigns.  Any attempt by Partner to transfer its
+rights, duties, or obligations under this Agreement except as expressly
+provided in this Agreement is void.  Notwithstanding the foregoing, either
+party may assign this Agreement to a successor of its business without the
+other party’s consent.  
+
+  (b)	Governing Law.  This Agreement will be interpreted, construed, and
+enforced in all respects in accordance with the local laws of the State of
+Washington, U.S.A., without reference to its choice of law rules to the
+contrary.  The provisions of the 1980 U.N. Convention on Contracts for the
+International Sale of Goods are expressly excluded and do not apply to this
+Agreement.  Any legal action by Partner arising under this Agreement must be
+initiated within two years after the cause of action arises.
+
+  (c)	Waiver.  The waiver by either party of any breach of any provision of
+this Agreement does not waive any other breach.  The failure of any party to
+insist on strict performance of any covenant or obligation in accordance with
+this Agreement will not be a waiver of such party’s right to demand strict
+compliance in the future, nor will the same be construed as a novation of this
+Agreement.
+
+  (d)	Severability.  If any part of this Agreement is found to be illegal,
+unenforceable, or invalid, the remaining portions of this Agreement will remain
+in full force and effect.  If any material limitation or restriction on the
+grant of any license to Partner under this Agreement is found to be illegal,
+unenforceable, or invalid, the license will immediately terminate.
+
+  (e)	Notices.  Any notice required or permitted to be given in accordance
+with this Agreement will be effective if it is in writing and sent using: (a)
+the “acknowledge receipt” function of the Subscription Service; (b) by
+certified or registered mail; or (c) insured overnight courier (such as FedEx
+or UPS), to the appropriate party at the address set forth below.  Either party
+may change its address for receipt of notice by notice to the other party in
+accordance with this Section.  Notices are deemed given upon receipt if
+delivered using the Subscription Service, five business days following the date
+of postal mailing, or one business day following delivery to an overnight
+courier.
+
+  (f)	Purchase Orders.  This Agreement shall take precedence over any
+purchase order issued by Partner, which may be accepted by DocuSign for
+administrative convenience only.  Any additional or different terms in such
+purchase orders are rejected unless specifically accepted by DocuSign in
+writing.
+
+  (g)	Entire Agreement.  This Agreement is the final and complete expression
+of the agreement between these parties regarding the DocuSign Products.  This
+Agreement supersedes, and the terms of this Agreement govern, all previous oral
+and written communications regarding these matters.  This Agreement may be
+changed only by a written agreement signed by an authorized agent of both
+parties.
 
