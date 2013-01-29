@@ -42,6 +42,10 @@ You may need to set an integrator key in the admin panel (more details in the
 
 http://www.docusign.com/developer-center
 
+To set the integrator key into the app, go into the admin panel (available at
+http://{hostname}/admin) and click on the "Change App Settings" button. There
+should be a text field where you can put in your integrator key.
+
 The integrator key is required for these functions of the app:
 
 * Signing an NDA.
