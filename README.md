@@ -108,6 +108,19 @@ $ node app
 
 Now point your browser to this address: http://localhost:3000
 
+
+Browser Settings for Lobby App Usage
+------------------------------------
+
+Third-party cookies are loaded when the Lobby App is interfacing with DocuSign.
+You may have to change your browser settings to allow third-party cookies
+usage. If this is not enabled, you will see a white screen where the DocuSign
+screen should be.
+
+For the default iPad browser (Safari), go into the browser setting page and
+change the setting labeled "Accept Cookies" from "From visited" to "Always".
+
+
 Using a Different Port Number
 -----------------------------
 
