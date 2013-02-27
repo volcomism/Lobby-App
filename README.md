@@ -24,7 +24,7 @@ $ cd lobby/
 $ ant install
 ```
 
-Setting up a new provisioning account
+Setting Up a New Provisioning Account
 -------------------------------------
 
 A DocuSign account is required to store the document that a visitor may need
@@ -34,7 +34,7 @@ To set one up for the app, the owner of the account must set a signing role
 into the document template's properties with the name "Signer" (as exactly
 shown).
 
-Integrator key
+Integrator Key
 --------------
 
 You may need to set an integrator key in the admin panel (more details in the
@@ -85,7 +85,10 @@ To stop the daemon:
 $ sudo stop lobby
 ```
 
-Setting the time zone on Debian-based systems
+When running as a daemon, the app will log various events into this file:
+/var/log/lobby-app.log
+
+Setting the Time Zone on Debian-based Systems
 ---------------------------------------------
 
 On Debian-based systems (such as Ubuntu Linux), you may have to set the time
@@ -112,7 +115,7 @@ Now point your browser to this address: http://localhost:3000
 Browser Settings for Lobby App Usage
 ------------------------------------
 
-Third-party cookies are loaded when the Lobby App is interfacing with DocuSign.
+Third-party cookies are loaded when the Lobby App is interacting with DocuSign.
 You may have to change your browser settings to allow third-party cookies
 usage. If this is not enabled, you will see a white screen where the DocuSign
 screen should be.
@@ -181,8 +184,18 @@ Before running tests or getting coverage data, you must install additional
 libraries with these commands:
 
 ```
-$ sudo npm install -g mocha
-$ sudo apt-get install jscoverage
+$ sudo npm install mocha -g
+$ sudo npm install jscoverage -g
+```
+
+Please note that Node 0.8 must be installed for the testing framework to work
+correctly.
+
+For Ubuntu, you may run these commands to install the latest version of Node:
+```
+$ sudo add-apt-repository ppa:richarvey/nodejs
+$ sudo apt-get update
+$ sudo apt-get install nodejs npm
 ```
 
 Running Tests
