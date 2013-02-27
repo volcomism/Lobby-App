@@ -8,15 +8,6 @@ block scripts
   script
     $(document).ready(function() {
 
-      $('#datepicker').val(!{date});
-      $('#datepicker').datepicker();
-      $('#datepicker').click(function() {
-        $('#datepicker').datepicker('show');
-      });
-      $('#datepicker').change(function() {
-        location.href = 'admin_history?time=' + $('#datepicker').val();
-      });
-
       $('#history').dataTable({ aaData: !{people}, aaSorting: [[9, 'desc']] });
 
       if ($('td:first').hasClass('dataTables_empty') == false) {
@@ -49,11 +40,6 @@ block content
 
   div(style="margin-left:5%; margin-right:5%")
 
-    div(style='float:right')
-      | Date: &nbsp;
-      input.button#datepicker(type="button")
-    br
-    br
     br
     br
 
