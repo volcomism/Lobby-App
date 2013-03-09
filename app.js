@@ -379,7 +379,7 @@ app.get('/dsrest_send_notification', function(req, res) {
           { 'documentId': '1'
           , 'name': 'Host Notification'
         }]
-      , 'recipients': { 'certifiedDeliveries': [
+      , 'recipients': { 'carbonCopies': [
           { 'email': host.email
           , 'name': host.name
           , 'recipientId': '123'
