@@ -11,6 +11,8 @@ var express = require('express')
 var fs = require('fs');
 var rest = require('restler');
 var moment = require('moment');
+var request = require('request');
+
 var SqliteStore = require('./sqlite-store');
 var db = require('./database');
 var print = require('./print');
@@ -316,37 +318,61 @@ app.get('/dsrest_init', function(req, res) {
 app.get('/dsrest_create_envelope', function(req, res) {
   var name = req.session.user.first_name + ' ' + req.session.user.last_name;
   var email = req.session.user.email;
-  var template = req.session.user.template_guid;
-  var headers = req.session.user.rest_headers;
   var url = req.session.user.base_url + '/envelopes';
 
-  var data = {
-    "templateId": template,
-    "templateRoles": [
-      { "email": email
-      , "name": name
-      , "roleName": "Signer"
-      , "clientUserId": "1"
-      }
-    ], "status": "sent"
+  var headers = {
+    'X-DocuSign-Authentication': req.session.user.rest_headers.headers['X-DocuSign-Authentication'],
   };
+  headers['content-type'] = 'multipart/form-data';
+
+  var data = {
+    recipients: {
+      signers: [{
+        email: email,
+        name: name,
+        recipientId: 1,
+        clientUserId: 1,
+      }]
+    },
+    emailSubject: 'Lobby App Document',
+    documents: [{
+      name: 'nda.pdf',
+      documentId: 1,
+    }],
+    status: 'sent',
+  };
+
+  var options = {
+    url: url,
+    headers: headers,
+    multipart: [{
+      'Content-Type': 'application/json',
+      'Content-Disposition': 'form-data',
+      body: JSON.stringify(data),
+    }, {
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': 'file; filename="nda.pdf"; documentId=1',
+      body: fs.readFileSync(path.join(__dirname, 'documents/nda.pdf')),
+    }],
+  };
+
   print._('request: ' + url + '\n  ' + JSON.stringify(data));
+  request.post(options, function(error, response, body) {
+    print._('response: ' + '\n  ' + body);
+    body = JSON.parse(body);
 
-  rest.postJson(url, data, headers).on('complete', function(result) {
-    print._('response: ' + '\n  ' + JSON.stringify(result));
-
-    if ('uri' in result)
+    if ('uri' in body)
       req.session.user.view_url = req.session.user.base_url +
-                                  result['uri'] + '/views/recipient';
+                                  body.uri + '/views/recipient';
 
-    res.send('errorCode' in result);
+    res.send('errorCode' in body);
   });
 });
 
 app.get('/dsrest_iframe_url', function(req, res) {
   var name = req.session.user.first_name + ' ' + req.session.user.last_name;
   var email = req.session.user.email;
-  var headers = req.session.user.rest_headers;
+  var headers = req.session.user.rest_headers.headers;
   var exit = 'http://' + req.headers.host + '/return';
   var url = req.session.user.view_url;
 
@@ -355,13 +381,19 @@ app.get('/dsrest_iframe_url', function(req, res) {
     , "email": email
     , "returnUrl": exit
     , "userName": name
-    , "clientUserId": "1"
+    , "clientUserId": 1
   };
-  print._('request: ' + url + '\n  ' + JSON.stringify(data));
 
-  rest.postJson(url, data, headers).on('complete', function(result) {
-    print._('response: ' + '\n  ' + JSON.stringify(result));
-    res.send(result);
+  var options = {
+    url: url,
+    headers: headers,
+    json: data,
+  };
+
+  print._('request: ' + url + '\n  ' + JSON.stringify(data));
+  request.post(options, function(error, response, body) {
+    print._('response: ' + '\n  ' + JSON.stringify(body));
+    res.send(body);
   });
 });
 
