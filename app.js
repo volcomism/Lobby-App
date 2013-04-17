@@ -82,7 +82,9 @@ app.get('/back', function(req, res) {
 });
 
 app.get('/validate_host', function(req, res) {
-  db.Host.where({ name: req.param('host_name') }).count(db.connection, function(err, count) {
+  db.Host.where(
+    'name = ? COLLATE NOCASE', req.param('host_name')
+  ).count(db.connection, function(err, count) {
     if (err) throw err;
 
     res.send(count > 0);
@@ -411,7 +413,7 @@ app.get('/dsrest_send_notification', function(req, res) {
   var guest_name = req.session.user.first_name + ' ' + req.session.user.last_name;
   var host_name = req.query.host_name;
 
-  db.Host.where('name = ?' , host_name).first(db.connection, function(err, host) {
+  db.Host.where('name = ? COLLATE NOCASE', host_name).first(db.connection, function(err, host) {
     if (err) throw err;
 
     var url = req.session.user.base_url + '/envelopes';
