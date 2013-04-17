@@ -9,7 +9,6 @@ var express = require('express')
   , path = require('path');
 
 var fs = require('fs');
-var rest = require('restler');
 var moment = require('moment');
 var request = require('request');
 
@@ -245,10 +244,16 @@ app.post('/docusign_test', function(req, res) {
     , "content-type": "application/json"
     , "accept": "application/json"
   }};
-
   var url = 'https://' + env + '.docusign.net/restapi/v2/login_information';
-  rest.get(url, headers).on('complete', function(result) {
-    res.send(!('errorCode' in result)); // return true if valid account
+
+  var options = {
+    url: url,
+    headers: headers,
+  };
+
+  request.get(options, function(error, response, body) {
+    //var json = JSON.parse(body);
+    res.send(!('errorCode' in response)); // return true if valid account
   });
 });
 
@@ -298,19 +303,24 @@ app.get('/dsrest_init', function(req, res) {
 
     req.session.user.login_url = 'https://' + ds_env + '.docusign.net/restapi/v2/login_information';
 
+    var url = req.session.user.login_url;
+    var headers = req.session.user.rest_headers.headers;
 
     // contact DS now
-    var url = req.session.user.login_url;
-    var headers = req.session.user.rest_headers;
+    var options = {
+      url: url,
+      headers: headers,
+    };
 
     print._('request: ' + url + '\n  ' + JSON.stringify(headers));
-    rest.get(url, headers).on('complete', function(result) {
-      print._('response: ' + '\n  ' + JSON.stringify(result));
+    request.get(options, function(error, response, body) {
+      var json = JSON.parse(body);
+      print._('response: ' + '\n  ' + JSON.stringify(json));
 
-      if ('loginAccounts' in result)
-        req.session.user.base_url = result['loginAccounts'][0]['baseUrl'];
+      if ('loginAccounts' in json)
+        req.session.user.base_url = json.loginAccounts[0].baseUrl;
 
-      res.send('errorCode' in result);
+      res.send('errorCode' in json);
     });
   });
 });
@@ -405,11 +415,17 @@ app.get('/dsrest_send_notification', function(req, res) {
     if (err) throw err;
 
     var url = req.session.user.base_url + '/envelopes';
+
+    var headers = {
+      'X-DocuSign-Authentication': req.session.user.rest_headers.headers['X-DocuSign-Authentication'],
+    };
+    headers['content-type'] = 'multipart/form-data';
+
     var data =
       { 'emailSubject': ('Your guest, ' + guest_name + ', has arrived.')
       , 'documents': [
           { 'documentId': '1'
-          , 'name': 'Host Notification'
+          , 'name': 'guest.txt'
         }]
       , 'recipients': { 'carbonCopies': [
           { 'email': host.email
@@ -423,22 +439,25 @@ app.get('/dsrest_send_notification', function(req, res) {
     var time = moment();
     var content = 'Your guest, ' + guest_name + ', has arrived on ' + time.format('MMMM D, YYYY') + ' at ' + time.format('h:mm A') + '.';
 
-    var form_data = '\n--myBoundary\nContent-Type: application/json\nContent-Disposition: form-data\n\n' + JSON.stringify(data) + '\n--myBoundary\nContent-Type:text/plain\nContent-Disposition: file; filename=”Host Notification"; documentid=1\n\n' + content + '\n--myBoundary--\n';
-    var form_headers =
-      { "X-DocuSign-Authentication": req.session.user.rest_headers.headers['X-DocuSign-Authentication']
-      , "content-type": "multipart/form-data; boundary=myBoundary"
-      , "content-length": form_data.length
-    };
-
-    var options =
-      { headers: form_headers
-      , data: form_data
+    var options = {
+      url: url,
+      headers: headers,
+      multipart: [{
+        'Content-Type': 'application/json',
+        'Content-Disposition': 'form-data',
+        body: JSON.stringify(data),
+      }, {
+        //'Content-Type': 'application/pdf', // FIXME: use node-pdfkit
+        'Content-Disposition': 'file; filename="guest.txt"; documentId=1',
+        body: content,
+      }],
     };
     print._('request: ' + url + '\n  ' + JSON.stringify(data));
 
-    rest.post(url, options).on('complete', function(result) {
-      print._('response: ' + '\n  ' + JSON.stringify(result));
-      res.send('errorCode' in result);
+    request.post(options, function(error, response, body) {
+      var json = JSON.parse(body);
+      print._('response: ' + '\n  ' + JSON.stringify(json));
+      res.send('errorCode' in json);
     });
   });
 });
