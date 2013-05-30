@@ -10,7 +10,6 @@ var express = require('express')
 
 var fs = require('fs');
 var util = require('util');
-var rest = require('restler');
 var moment = require('moment');
 var request = require('request');
 var pdfkit = require('pdfkit');
@@ -86,7 +85,9 @@ app.get('/back', function(req, res) {
 });
 
 app.get('/validate_host', function(req, res) {
-  db.Host.where({ name: req.param('host_name') }).count(db.connection, function(err, count) {
+  db.Host.where(
+    'name = ? COLLATE NOCASE', req.param('host_name')
+  ).count(db.connection, function(err, count) {
     if (err) throw err;
 
     res.send(count > 0);
@@ -248,10 +249,16 @@ app.post('/docusign_test', function(req, res) {
     , "content-type": "application/json"
     , "accept": "application/json"
   }};
-
   var url = 'https://' + env + '.docusign.net/restapi/v2/login_information';
-  rest.get(url, headers).on('complete', function(result) {
-    res.send(!('errorCode' in result)); // return true if valid account
+
+  var options = {
+    url: url,
+    headers: headers,
+  };
+
+  request.get(options, function(error, response, body) {
+    //var json = JSON.parse(body);
+    res.send(!('errorCode' in response)); // return true if valid account
   });
 });
 
@@ -301,19 +308,24 @@ app.get('/dsrest_init', function(req, res) {
 
     req.session.user.login_url = 'https://' + ds_env + '.docusign.net/restapi/v2/login_information';
 
+    var url = req.session.user.login_url;
+    var headers = req.session.user.rest_headers.headers;
 
     // contact DS now
-    var url = req.session.user.login_url;
-    var headers = req.session.user.rest_headers;
+    var options = {
+      url: url,
+      headers: headers,
+    };
 
     print._('request: ' + url + '\n  ' + JSON.stringify(headers));
-    rest.get(url, headers).on('complete', function(result) {
-      print._('response: ' + '\n  ' + JSON.stringify(result));
+    request.get(options, function(error, response, body) {
+      var json = JSON.parse(body);
+      print._('response: ' + '\n  ' + JSON.stringify(json));
 
-      if ('loginAccounts' in result)
-        req.session.user.base_url = result['loginAccounts'][0]['baseUrl'];
+      if ('loginAccounts' in json)
+        req.session.user.base_url = json.loginAccounts[0].baseUrl;
 
-      res.send('errorCode' in result);
+      res.send('errorCode' in json);
     });
   });
 });
@@ -404,7 +416,7 @@ app.get('/dsrest_send_notification', function(req, res) {
   var guest_name = req.session.user.first_name + ' ' + req.session.user.last_name;
   var host_name = req.query.host_name;
 
-  db.Host.where('name = ?' , host_name).first(db.connection, function(err, host) {
+  db.Host.where('name = ? COLLATE NOCASE', host_name).first(db.connection, function(err, host) {
     if (err) throw err;
 
     var url = req.session.user.base_url + '/envelopes';

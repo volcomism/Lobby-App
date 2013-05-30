@@ -11,7 +11,6 @@
     , "sqlite3": "*"
     , "persist": "*"
     , "webdriverjs": "*"
-    , "restler": "*"
     , "csv": "0.2.0"
     , "moment": "1.7.0"
     , "should": "*"
