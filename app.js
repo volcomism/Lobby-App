@@ -346,7 +346,6 @@ app.get('/dsrest_create_envelope', function(req, res) {
         email: email,
         name: name,
         recipientId: 1,
-        clientUserId: 1,
       }]
     },
     emailSubject: 'Lobby App Document',
@@ -396,7 +395,6 @@ app.get('/dsrest_iframe_url', function(req, res) {
     , "email": email
     , "returnUrl": exit
     , "userName": name
-    , "clientUserId": 1
   };
 
   var options = {
