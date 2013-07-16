@@ -338,7 +338,7 @@ app.get('/dsrest_create_envelope', function(req, res) {
   var headers = {
     'X-DocuSign-Authentication': req.session.user.rest_headers.headers['X-DocuSign-Authentication'],
   };
-  headers['Content-Type'] = 'multipart/form-data';
+  headers['content-type'] = 'multipart/form-data';
 
   var data = {
     recipients: {
@@ -422,7 +422,7 @@ app.get('/dsrest_send_notification', function(req, res) {
     var headers = {
       'X-DocuSign-Authentication': req.session.user.rest_headers.headers['X-DocuSign-Authentication'],
     };
-    headers['Content-type'] = 'multipart/form-data';
+    headers['content-Type'] = 'multipart/form-data';
 
     var data = {
       recipients: {
