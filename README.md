@@ -1,3 +1,11 @@
+Environment
+===========
+
+Below is the software used during the development and testing of the Lobby App.
+
+* Ubuntu Linux 12.04
+* NodeJS 0.6
+
 Installation
 ============
 
