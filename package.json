@@ -11,9 +11,11 @@
     , "sqlite3": "*"
     , "persist": "*"
     , "webdriverjs": "*"
-    , "restler": "*"
     , "csv": "0.2.0"
     , "moment": "1.7.0"
     , "should": "*"
+    , "request": "2.16.6"
+    , "pdfkit": "0.1.9"
+    , "temp": "0.4.0"
   }
 }

@@ -1,4 +1,3 @@
-var rest = require('restler');
 var moment = require('moment');
 var db = require('../database');
 var print = require('../print');
