@@ -6,9 +6,8 @@ block scripts
   include ../includes/js/data-tables
 
   script.
-    $(document).ready(function() {
 
-      $('#history').dataTable({ aaData: !{people}, aaSorting: [[9, 'desc']] });
+    function add_signout_buttons() {
 
       if ($('td:first').hasClass('dataTables_empty') == false) {
         $('tbody > tr').each(function() {
@@ -29,6 +28,24 @@ block scripts
           tr_elem.find('td:nth-child(11)').text(data);
           tr_elem.find('td:nth-child(12)').css('visibility', 'hidden'); // hide signout button
         });
+      });
+    }
+
+
+    $(document).ready(function() {
+
+      $('#history').dataTable({ aaData: !{people}, aaSorting: [[9, 'desc']] });
+
+      add_signout_buttons();
+
+      $('#history_next').click(function() {
+        var column_count = 0;
+        $('tr:nth-child(1) td').each(function() {
+          column_count++;
+        });
+
+        if (column_count < 12) // only add if button doesn't exist yet
+          add_signout_buttons();
       });
     });
 
