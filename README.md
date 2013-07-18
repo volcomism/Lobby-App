@@ -41,13 +41,17 @@ $ cd lobby/
 $ ant install
 ```
 
-Setting Up How the Document Is Sent
------------------------------------
+Setting Up the Document
+-----------------------
 
-The document that a visitor may need to sign can be configured to be sent
-as carbon copies (CC) to people other than the signer. A sample
-configuration JSON file is provided as "config.json.sample". You may copy
-this file into "config.json" and modify the values accordingly.
+The document that a visitor may need to sign must be a PDF file and be
+named "document.pdf", placed at the root of the app installation (where
+"app.js" is located).
+
+This document can be configured to be sent as carbon copies (CC) to people
+other than the signer. A sample configuration JSON file is provided as
+"config.json.sample". You may copy this file into "config.json" and modify
+the values accordingly.
 
 You will need the file config.json in order for the app to run. If you do
 not require CC recipients, you may leave that config field blank like so:
