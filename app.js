@@ -18,6 +18,7 @@ var temp = require('temp');
 var SqliteStore = require('./sqlite-store');
 var db = require('./database');
 var print = require('./print');
+var nconf = require('nconf').file('config.json');
 
 var app = express();
 
@@ -340,17 +341,29 @@ app.get('/dsrest_create_envelope', function(req, res) {
   };
   headers['content-type'] = 'multipart/form-data';
 
+  var cc_recipients = [];
+  var cc_data = nconf.get('DS_SEND_CC_RECIPIENTS');
+  for (var i in cc_data) {
+    cc_recipients.push({
+      name: cc_data[i][0],
+      email: cc_data[i][1],
+      recipientId: parseInt(i, 10) + 2,
+    });
+  }
+
   var data = {
     recipients: {
       signers: [{
-        email: email,
         name: name,
+        email: email,
         recipientId: 1,
-      }]
+        clientUserId: 1,
+      }],
+      carbonCopies: cc_recipients,
     },
-    emailSubject: 'Lobby App Document',
+    emailSubject: nconf.get('DS_SEND_EMAIL_SUBJECT'),
     documents: [{
-      name: 'nda.pdf',
+      name: 'document.pdf',
       documentId: 1,
     }],
     status: 'sent',
@@ -365,8 +378,8 @@ app.get('/dsrest_create_envelope', function(req, res) {
       body: JSON.stringify(data),
     }, {
       'Content-Type': 'application/pdf',
-      'Content-Disposition': 'file; filename="nda.pdf"; documentId=1',
-      body: fs.readFileSync(path.join(__dirname, 'documents/nda.pdf')),
+      'Content-Disposition': 'file; filename="document.pdf"; documentId=1',
+      body: fs.readFileSync(path.join(__dirname, 'document.pdf')),
     }],
   };
 
@@ -390,11 +403,12 @@ app.get('/dsrest_iframe_url', function(req, res) {
   var exit = 'http://' + req.headers.host + '/return';
   var url = req.session.user.view_url;
 
-  var data =
-    { "authenticationMethod": "email"
-    , "email": email
-    , "returnUrl": exit
-    , "userName": name
+  var data = {
+    authenticationMethod: "email",
+    email: email,
+    returnUrl: exit,
+    userName: name,
+    clientUserId: 1,
   };
 
   var options = {
@@ -422,15 +436,14 @@ app.get('/dsrest_send_notification', function(req, res) {
     var headers = {
       'X-DocuSign-Authentication': req.session.user.rest_headers.headers['X-DocuSign-Authentication'],
     };
-    headers['content-Type'] = 'multipart/form-data';
+    headers['content-type'] = 'multipart/form-data';
 
     var data = {
       recipients: {
         carbonCopies: [{
-          email: host.email,
           name: host.name,
+          email: host.email,
           recipientId: 1,
-          routingOrder: 1,
         }],
       },
       emailSubject: 'Your guest, ' + guest_name + ', has arrived.',
@@ -447,29 +460,32 @@ app.get('/dsrest_send_notification', function(req, res) {
     var doc = new pdfkit();
     doc.text(content);
     var notification = temp.path('lobby');
-    doc.write(notification);
 
-    var options = {
-      url: url,
-      headers: headers,
-      multipart: [{
-        'Content-Type': 'application/json',
-        'Content-Disposition': 'form-data',
-        body: JSON.stringify(data),
-      }, {
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': 'file; filename="notify.pdf"; documentId=1',
-        body: fs.readFileSync(notification),
-      }],
-    };
+    doc.write(notification, function(err) {
+      if (err) throw err;
 
-    print._('request: ' + url + '\n  ' + JSON.stringify(data));
-    request.post(options, function(error, response, body) {
-      print._('response: ' + '\n ' + body);
-      body = JSON.parse(body);
+      var options = {
+        url: url,
+        headers: headers,
+        multipart: [{
+          'Content-Type': 'application/json',
+          'Content-Disposition': 'form-data',
+          body: JSON.stringify(data),
+        }, {
+          'Content-Type': 'application/pdf',
+          'Content-Disposition': 'file; filename="notify.pdf"; documentId=1',
+          body: fs.readFileSync(notification),
+        }],
+      };
 
-      fs.unlinkSync(notification);
-      res.send('errorCode' in body);
+      print._('request: ' + url + '\n  ' + JSON.stringify(data));
+      request.post(options, function(error, response, body) {
+        print._('response: ' + '\n ' + body);
+        body = JSON.parse(body);
+
+        fs.unlinkSync(notification);
+        res.send('errorCode' in body);
+      });
     });
   });
 });
