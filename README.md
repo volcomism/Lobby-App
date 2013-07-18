@@ -32,15 +32,20 @@ $ cd lobby/
 $ ant install
 ```
 
-Setting Up a New Provisioning Account
--------------------------------------
+Setting Up How the Document Is Sent
+-----------------------------------
 
-A DocuSign account is required to store the document that a visitor may need
-to sign. This is known as the provisioning account.
+The document that a visitor may need to sign can be configured to be sent
+as carbon copies (CC) to people other than the signer. A sample
+configuration JSON file is provided as "config.json.sample". You may copy
+this file into "config.json" and modify the values accordingly.
 
-To set one up for the app, the owner of the account must set a signing role
-into the document template's properties with the name "Signer" (as exactly
-shown).
+You will need the file config.json in order for the app to run. If you do
+not require CC recipients, you may leave that config field blank like so:
+
+```
+  "DS_SEND_CC_RECIPIENTS": []
+```
 
 Integrator Key
 --------------

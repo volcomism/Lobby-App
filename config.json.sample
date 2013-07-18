@@ -1,0 +1,7 @@
+{
+  "DS_SEND_EMAIL_SUBJECT": "Sample Document",
+  "DS_SEND_CC_RECIPIENTS": [
+    ["Person One", "person1@example.com"],
+    ["Person Two", "person2@example.com"]
+  ]
+}
