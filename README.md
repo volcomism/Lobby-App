@@ -6,6 +6,15 @@ Below is the software used during the development and testing of the Lobby App.
 * Ubuntu Linux 12.04
 * NodeJS 0.6
 
+For Ubuntu, you need to run these commands to install the latest version of
+NodeJS:
+
+```
+$ sudo add-apt-repository ppa:richarvey/nodejs
+$ sudo apt-get update
+$ sudo apt-get install nodejs npm
+```
+
 Installation
 ============
 
@@ -189,27 +198,6 @@ $ ant database-dev
 ```
 
 This command will populate the database with test data.
-
-Prerequisites
--------------
-
-Before running tests or getting coverage data, you must install additional
-libraries with these commands:
-
-```
-$ sudo npm install mocha -g
-$ sudo npm install jscoverage -g
-```
-
-Please note that Node 0.8 must be installed for the testing framework to work
-correctly.
-
-For Ubuntu, you may run these commands to install the latest version of Node:
-```
-$ sudo add-apt-repository ppa:richarvey/nodejs
-$ sudo apt-get update
-$ sudo apt-get install nodejs npm
-```
 
 Running Tests
 -------------
