@@ -1,19 +1,11 @@
 Environment
 ===========
 
-Below is the software used during the development and testing of the Lobby App.
+This is the software used during the development and testing of the Lobby App:
 
-* Ubuntu Linux 12.04
-* NodeJS 0.6
-
-For Ubuntu, you need to run these commands to install the latest version of
-NodeJS:
-
-```
-$ sudo add-apt-repository ppa:richarvey/nodejs
-$ sudo apt-get update
-$ sudo apt-get install nodejs npm
-```
+* Ubuntu Linux 13.04
+* NodeJS 0.10
+* SQLite 3.7.15.2
 
 Installation
 ============
@@ -21,12 +13,14 @@ Installation
 Prerequisite Software
 ---------------------
 
-For Debian Linux-based systems (such as Ubuntu), run this command to
+For Debian Linux-based systems (such as Ubuntu), run these commands to
 install the prerequisite software (please note that '$' means that it
 should be run on the command-line terminal):
 
 ```
-$ sudo apt-get install nodejs npm git g++ make ant libsqlite3-dev
+$ sudo add-apt-repository ppa:richarvey/nodejs
+$ sudo apt-get update
+$ sudo apt-get install npm ant make g++
 ```
 
 Lobby App Installation
