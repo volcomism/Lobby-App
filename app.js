@@ -369,6 +369,26 @@ app.get('/dsrest_create_envelope', function(req, res) {
     status: 'sent',
   };
 
+  var tabMap = {
+    name: 'fullNameTabs',
+    signature: 'signHereTabs',
+    date: 'dateSignedTabs',
+  };
+
+  var tabConfig = nconf.get('DS_SEND_ANCHOR_TAGS');
+  data['recipients']['signers'][0]['tabs'] = {};
+  for (var prop in tabConfig) {
+    var key = tabMap[prop];
+
+    data['recipients']['signers'][0]['tabs'][key] = [{
+      tabLabel: prop,
+      documentId: 1,
+      pageNumber: tabConfig[prop]['pageNumber'],
+      xPosition: tabConfig[prop]['xPosition'],
+      yPosition: tabConfig[prop]['yPosition'],
+    }];
+  }
+
   var options = {
     url: url,
     headers: headers,
