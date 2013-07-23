@@ -7,14 +7,11 @@ block scripts
 
   script.
 
-    function add_signout_buttons() {
+    function refresh_signout_buttons() {
 
-      if ($('td:first').hasClass('dataTables_empty') == false) {
+      if ($('td:first').hasClass('dataTables_empty') === false) {
         $('tbody > tr').each(function() {
-          if ($(this).find('td:nth-child(11)').text() == '') { // not signed out
-            $(this).append('<td><input class="signout" type="button" value="Sign Out" /></td>');
-          } else {
-            $(this).append('<td></td>');
+          if ($(this).find('td:nth-child(11)').text() !== '') { // not signed out
             $(this).find('td:nth-child(12)').css('visibility', 'hidden'); // hide signout button
           }
         });
@@ -29,25 +26,53 @@ block scripts
           tr_elem.find('td:nth-child(12)').css('visibility', 'hidden'); // hide signout button
         });
       });
+
     }
 
 
     $(document).ready(function() {
 
-      $('#history').dataTable({ aaData: !{people}, aaSorting: [[9, 'desc']] });
+      var oTable = $('#history').dataTable({
+        aaData: !{people},
+        aaSorting: [[9, 'desc']],
+        aoColumns: [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          { 'fnRender': function(oObj) {
+              return '<td><input class="signout" type="button" value="Sign Out" /></td>';
+            }
+          },
+        ],
+      });
 
-      add_signout_buttons();
+      refresh_signout_buttons();
+
+      $('#datepicker').datepicker();
+      $('#datepicker').datepicker('option', 'dateFormat', 'm/d/yy');
+      $('#datepicker').val('All Days'); // shown when a date isn't selected
+      $('#datepicker').click(function() {
+        $('#datepicker').datepicker('show');
+      });
+      $('#datepicker').change(function() {
+        oTable.fnFilter($('#datepicker').val(), 9);
+        refresh_signout_buttons();
+      });
 
       $('#history_next').click(function() {
-        var column_count = 0;
-        $('tr:nth-child(1) td').each(function() {
-          column_count++;
-        });
-
-        if (column_count < 12) // only add if button doesn't exist yet
-          add_signout_buttons();
+        refresh_signout_buttons();
       });
+
     });
+
 
 block content
   include ../includes/logo
@@ -56,6 +81,12 @@ block content
     h1 Sign-In / Sign-Out History
 
   div(style="margin-left:5%; margin-right:5%")
+
+    div(style='float:right')
+      b Filter by Day: &nbsp;
+      input.button#datepicker(type="button")
+    br
+    br
 
     br
     br
@@ -74,6 +105,7 @@ block content
           th Badge Number
           th Sign-In Time
           th Sign-Out Time
+          th Sign Out?
     br
     br
 

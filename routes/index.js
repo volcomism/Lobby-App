@@ -277,6 +277,7 @@ exports.admin_history = function(req, res){
             , row.badge_number
             , moment(row.signin_time).format('M/D/YYYY h:mm A')
             , signout_time
+            , '' // column for sign-out button
           ]);
         });
 
