@@ -347,6 +347,7 @@ app.get('/dsrest_create_envelope', function(req, res) {
     cc_recipients.push({
       name: cc_data[i][0],
       email: cc_data[i][1],
+      routingOrder: 2,
       recipientId: parseInt(i, 10) + 2,
     });
   }
@@ -357,6 +358,7 @@ app.get('/dsrest_create_envelope', function(req, res) {
         name: name,
         email: email,
         recipientId: 1,
+        routingOrder: 1,
         clientUserId: 1,
       }],
       carbonCopies: cc_recipients,
