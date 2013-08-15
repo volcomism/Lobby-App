@@ -5,3 +5,5 @@ public/images/logo.png
 document.pdf
 config.json
 default_integrator_key.js
+.idea
+projectFilesBackup
