@@ -1,9 +1,0 @@
-{
-  "default": "prod",
-
-  "prod": {
-    "driver": "sqlite3",
-    "filename": "lobby.db",
-    "trace": false
-  }
-}
