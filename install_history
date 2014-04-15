@@ -1,0 +1,17 @@
+
+## Installation instructions I followed that differed from Docusign
+#sudo add-apt-repository ppa:chris-lea/node.js
+#sudo apt-get update
+#sudo apt-get install python-software-properties python g++ make openjdk-6-jdk nodejs unzip zip npm git g++ make ant libsqlite3-dev screen
+#wget http://www.docusign.com/sites/default/files/Integrations/LobbyApp/DS_lobby_app_1_0_0.zip
+#unzip DS_lobby_app_1_0_0.zip 
+#node -v
+#npm -v
+#mkdir -p /var/www/
+#cd /var/www/
+#git clone git@github.com:volcomism/Lobby-App.git
+#mv Lobby-App lobby
+#cd lobby
+#ant install
+#screen -S lobbyapp
+#sudo PORT=80 node app
